@@ -18,8 +18,13 @@ import Item from "./item.js";
         save();
     }
 
+    todo.removeAllItems = function () {
+        let items = document.querySelectorAll('#toDoItems > li');
+        if (items !== null)
+            items.forEach(item => remove(null, item));
+    }
     const save = () => {
-        let items = document.querySelectorAll('#toDoItems>li');
+        let items = document.querySelectorAll('#toDoItems > li');
         let res = Array.from(items).map(i => new Item(i.childNodes[0].textContent, i.classList.contains('bg-success')));
         localStorage.setItem('items', JSON.stringify(res));
     }
@@ -60,8 +65,11 @@ import Item from "./item.js";
         li.classList.toggle('bg-opacity-25');
     }
 
-    function remove() {
-        this.parentElement.remove();
+    function remove(e, item) {
+        if (item !== undefined)
+            item.remove();
+        else
+            this.parentElement.remove();
         save();
     }
 
@@ -69,6 +77,7 @@ import Item from "./item.js";
 
 
 document.querySelector('#todoForm').addEventListener('submit', todo.add);
+document.querySelector('#removeItemsBtn').addEventListener('click', todo.removeAllItems);
 todo.get();
 
 

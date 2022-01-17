@@ -31,26 +31,39 @@
 
         <section>
             <div class="container">
-                <div class="border-bottom bg-white">
-                    <form id="todoForm" class="py-4 container">
-                        <div class="input-group input-group-lg">
-                            <input type="text" class="form-control" id="todoInput" placeholder="Lägg till..."
-                                minlength="2" required autofocus>
-                            <div class="input-group-append input-group-lg">
-                                <button id="addItemBtn" class="btn btn-primary">Lägg till</button>
-                            </div>
+                <div class="row">
+                    <div class="col">
+                        <div class=" bg-white">
+                            <form id="todoForm" class="py-4 container">
+                                <div class="input-group input-group-lg">
+                                    <input type="text" class="form-control" id="todoInput" placeholder="Lägg till..."
+                                        minlength="2" required autofocus>
+                                    <div class="input-group-append input-group-lg">
+                                        <button id="addItemBtn" class="btn btn-primary">Lägg till</button>
+                                    </div>
+                                </div>
+                            </form>
                         </div>
-                    </form>
+                    </div>
+
+                </div>
+                <div class="row pb-2">
+                        <div class="d-grid  col col-6 mx-auto">
+                            <button id="removeItemsBtn" class="btn btn-danger">Återställa</button>
+                        </div>
+                </div>
+                <div class="row pt-2 border-top">
+                    <div class="col">
+                        <ul id="toDoItems" class="list-group align-self-sm-stretch user-select-none">
+                            <!-- <li class="list-group-item">Mjölk<button class="btn btn-danger float-end">X</button></li>
+                            <li class="list-group-item">Bananer<button class="btn btn-danger float-end">X</button></li> -->
+                        </ul>
+                    </div>
+
                 </div>
             </div>
         </section>
 
-        <div class="container">
-            <ul id="toDoItems" class="list-group align-self-sm-stretch user-select-none">
-                <!-- <li class="list-group-item">Mjölk<button class="btn btn-danger float-end">X</button></li>
-            <li class="list-group-item">Bananer<button class="btn btn-danger float-end">X</button></li> -->
-            </ul>
-        </div>
 
     </main>
 
