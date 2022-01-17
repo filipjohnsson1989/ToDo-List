@@ -1,7 +1,8 @@
-class Item{
-    constructor(text, isChecked){
+class Item {
+    constructor(order, text, isChecked) {
+        this.order = order;
         this.text = text;
-        this.isChecked =isChecked;
+        this.isChecked = isChecked;
     }
 }
 

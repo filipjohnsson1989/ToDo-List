@@ -6,13 +6,15 @@ import Item from "./item.js";
     todo.get = function () {
         const savedItems = JSON.parse(localStorage.getItem('items'));
         if (savedItems !== null)
-            savedItems.forEach(item => addItem(item));
+            savedItems.sort(function(first, second){
+                return first.order - second.order;
+            }).forEach(item => addItem(item));
     }
 
     todo.add = function (e) {
         e.preventDefault();
         const input = this['todoInput'];
-        const item = new Item(input.value, false);
+        const item = new Item(null, input.value, false);
         addItem(item);
         input.value = '';
         save();
@@ -25,13 +27,18 @@ import Item from "./item.js";
     }
     const save = () => {
         let items = document.querySelectorAll('#toDoItems > li');
-        let res = Array.from(items).map(i => new Item(i.childNodes[0].textContent, i.classList.contains('bg-success')));
+        let res = Array.from(items).map((item, index) => new Item(index, item.childNodes[0].textContent, item.classList.contains('bg-success')));
         localStorage.setItem('items', JSON.stringify(res));
     }
 
     const addItem = (item) => {
-        const li = createToDo(item);
         const list = document.querySelector('#toDoItems');
+        if (item.order === null) {
+            const items = list.querySelector('li');
+            item.order = items === null ? 0 : items.length;
+        }
+
+        const li = createToDo(item);
         list.appendChild(li);
     }
 
